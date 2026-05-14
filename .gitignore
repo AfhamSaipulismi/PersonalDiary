@@ -66,3 +66,9 @@ backend/.env.production.local
 *.log
 .DS_Store
 
+# Root env
+.env
+
+# Frontend env (non-local variants missing)
+frontend/.env
+frontend/.env.*
