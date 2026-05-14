@@ -19,14 +19,10 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/diaries', require('./routes/diaryRoutes'));
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-    app.get('.*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
-    });
-}
+// Simple route to check if the API is running
+app.get('/', (req, res) => {
+    res.send('Personal Diary API is running successfully on Vercel!');
+});
 
 const PORT = process.env.PORT || 5000;
 
