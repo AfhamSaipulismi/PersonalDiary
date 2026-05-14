@@ -8,8 +8,13 @@ dotenv.config();
 
 const app = express();
 
+// Safely remove trailing slash if it exists in the environment variable
+const frontendUrl = process.env.FRONTEND_URL 
+    ? process.env.FRONTEND_URL.replace(/\/$/, "") 
+    : 'http://localhost:3000';
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: frontendUrl,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
